@@ -2,4 +2,7 @@
     <string name="app_name">CourseBookingApp</string>
     <string name="welcome_text">Welcome to</string>
     <string name="app_name_text">Course Booking App</string>
+    <string name="admin_button_text">admin</string>
+    <string name="teacher_button_text">teacher</string>
+    <string name="student_button_text">student</string>
 </resources>
