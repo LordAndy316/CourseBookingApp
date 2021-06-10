@@ -6,5 +6,24 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.example.android.coursebookingapp.WelcomeFragment"
-        android:label="WelcomeFragment" />
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginSignupFragment"
+            app:destination="@id/loginSignupFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginSignupFragment"
+        android:name="com.example.android.coursebookingapp.LoginSignupFragment"
+        android:label="LoginSignupFragment" >
+        <argument
+            android:name="action"
+            android:defaultValue="-1"
+            app:argType="integer" />
+
+        <argument
+            android:name="role"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>
