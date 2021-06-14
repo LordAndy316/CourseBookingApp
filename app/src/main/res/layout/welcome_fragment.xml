@@ -3,51 +3,76 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    tools:context=".W">
+    <!--tools:context=".screens.title.TitleFragment" -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/title_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.android.coursebookingapp.screens.WelcomeFragment">
 
-    <include
-        android:id="@+id/welcome_group"
-        layout="@layout/welcome_sub_layout"/>
-
-    <LinearLayout
-        android:id="@+id/role_groupview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/welcome_group">
-
-        <Button
-            android:id="@+id/admin_button"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:text="@string/admin_button_text"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            tools:text="Admin" />
-
-        <Button
-            android:id="@+id/teacher_button"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:text="@string/teacher_button_text"
-            android:textAlignment="center"
-            android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/student_button"
-            style="?attr/materialButtonOutlinedStyle"
+        <TextView
+            android:id="@+id/welcome_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/student_button_text"
-            android:textColor="@color/black" />
-    </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif"
+            tools:text="Welcome Olivia Borel"
+            android:textColor="@android:color/black"
+            android:textSize="34sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/role_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-</RelativeLayout>
+        <!-- Welcome ‘firstname/username’! You are logged in as ‘role’ -->
+        <TextView
+            android:id="@+id/role_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            tools:text="You are logged in as an Admin"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/action_groupview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/welcome_text"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <LinearLayout
+            android:id="@+id/action_groupview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/action2_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Add Course"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"
+                android:layout_marginRight="8dp" />
+
+            <Button
+                android:id="@+id/action1_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:textAlignment="center"
+                android:textColor="#000000" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
