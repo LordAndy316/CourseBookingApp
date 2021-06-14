@@ -209,7 +209,7 @@ public class LoginSignupFragment extends Fragment {
             NavDirections direction = LoginSignupFragmentDirections.actionLoginSignupFragmentDestinationToWelcomeFragment()
                     .setName(name)
                     .setRole(role);
-            Navigation.findNavController().navigate(direction);
+           // Navigation.findNavController().navigate(direction);
 
             //
             super.onPostExecute(role);
