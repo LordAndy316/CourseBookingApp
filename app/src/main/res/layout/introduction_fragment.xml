@@ -6,25 +6,30 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="16dp"
-    tools:context="com.example.android.coursebookingapp.WelcomeFragment">
+    android:paddingTop="32dp"
+    tools:context="com.example.android.coursebookingapp.screens.IntroductionFragment">
 
     <include
         android:id="@+id/welcome_group"
-        layout="@layout/welcome_sub_layout"/>
+        layout="@layout/introduction_sub_layout"/>
 
+    <!--         app:checkedButton="@+id/current_selection" -->
     <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/role_toggle_group"
+        android:id="@+id/role_toggle_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/welcome_group">
+        android:layout_below="@id/welcome_group"
+        app:singleSelection="true"
+        app:selectionRequired="true">
 
         <Button
             android:id="@+id/admin_button"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="88dp"
             android:text="@string/admin_button_text"
             android:textAlignment="center"
@@ -34,7 +39,7 @@
         <Button
             android:id="@+id/teacher_button"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="88dp"
             android:text="@string/teacher_button_text"
             android:textAlignment="center"
@@ -43,7 +48,7 @@
         <Button
             android:id="@+id/student_button"
             style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="130dp"
             android:layout_height="88dp"
             android:text="@string/student_button_text"
             android:textColor="@color/black" />
@@ -56,7 +61,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/role_toggle_group">
+        android:layout_below="@id/role_toggle_buttons">
 
         <Button
             android:id="@+id/login_button"
@@ -65,6 +70,7 @@
             android:text="@string/login_button_text"
             android:textAlignment="center"
             android:textColor="@android:color/black"
+            android:layout_marginRight="8dp"
             tools:text="Login" />
 
         <Button
