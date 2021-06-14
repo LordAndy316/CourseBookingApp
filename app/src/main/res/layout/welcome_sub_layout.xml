@@ -30,7 +30,7 @@
         android:textColor="@android:color/black"
         android:textSize="34sp"
         android:textStyle="normal"
-        app:layout_constraintBottom="parent"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.413"
         app:layout_constraintStart_toStartOf="parent"
