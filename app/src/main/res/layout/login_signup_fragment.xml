@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- ".WelcomeFragment" -->
+    <!-- ".IntroductionFragment" -->
 
     <LinearLayout
         android:id="@+id/details_container_inputFields"
@@ -14,13 +14,35 @@
         android:paddingLeft="@dimen/fields_container_padding"
         android:paddingRight="@dimen/fields_container_padding"
         android:paddingBottom="@dimen/form_top_margin"
-        tools:context="com.example.android.coursebookingapp.LoginSignupFragment">
+        tools:context="com.example.android.coursebookingapp.screens.LoginSignupFragment">
 
         <TextView
             android:id="@+id/login_signup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textAllCaps="true"
+            android:textSize="18sp"
             tools:text="Student Login"/>
+
+        <!-- Name category -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameOutlinedTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/details_fragment_spacing"
+            android:visibility="gone"
+            android:hint="@string/hint_name">
+
+            <!-- Reenter password field-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Username category -->
         <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +95,6 @@
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
 
         <LinearLayout
             android:layout_width="wrap_content"
