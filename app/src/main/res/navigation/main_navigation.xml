@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/introductionFragment"
-        android:name="com.example.android.coursebookingapp.screens.IntroductionFragment"
+        android:name="com.example.android.coursebookingapp.screens.mainFragments.IntroductionFragment"
         android:label="introductionFragment" >
         <action
             android:id="@+id/action_introductionFragment_to_loginSignupFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginSignupFragment_destination"
-        android:name="com.example.android.coursebookingapp.screens.LoginSignupFragment"
+        android:name="com.example.android.coursebookingapp.screens.mainFragments.LoginSignupFragment"
         android:label="LoginSignupFragment" >
         <argument
             android:name="action"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.example.android.coursebookingapp.screens.WelcomeFragment"
+        android:name="com.example.android.coursebookingapp.screens.mainFragments.WelcomeFragment"
         android:label="WelcomeFragment" >
 
         <argument

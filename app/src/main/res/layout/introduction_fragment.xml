@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="32dp"
-    tools:context="com.example.android.coursebookingapp.screens.IntroductionFragment">
+    tools:context="com.example.android.coursebookingapp.screens.mainFragments.IntroductionFragment">
 
     <include
         android:id="@+id/welcome_group"

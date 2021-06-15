@@ -14,7 +14,7 @@
         android:paddingLeft="@dimen/fields_container_padding"
         android:paddingRight="@dimen/fields_container_padding"
         android:paddingBottom="@dimen/form_top_margin"
-        tools:context="com.example.android.coursebookingapp.screens.LoginSignupFragment">
+        tools:context="com.example.android.coursebookingapp.screens.mainFragments.LoginSignupFragment">
 
         <TextView
             android:id="@+id/login_signup_title"
