@@ -1,4 +1,4 @@
-package com.example.android.coursebookingapp.screens;
+package com.example.android.coursebookingapp.screens.mainFragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,10 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.navigation.NavArgs;
 import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.room.Room;
 
 import com.example.android.coursebookingapp.R;
@@ -27,7 +25,8 @@ import com.example.android.coursebookingapp.database.InstructorDAO;
 import com.example.android.coursebookingapp.database.Student;
 import com.example.android.coursebookingapp.database.StudentDAO;
 import com.example.android.coursebookingapp.databinding.LoginSignupFragmentBinding;
-import com.example.android.coursebookingapp.databinding.IntroductionFragmentBinding;
+import com.example.android.coursebookingapp.screens.LoginSignupFragmentArgs;
+import com.example.android.coursebookingapp.screens.LoginSignupFragmentDirections;
 
 public class LoginSignupFragment extends Fragment {
 
@@ -47,9 +46,9 @@ public class LoginSignupFragment extends Fragment {
     private InstructorDAO instructorDAO;
     private StudentDAO studentDAO;
 
-    private String password;
-    private String username;
-    private String name;
+    private String password_;
+    private String username_;
+    private String name_;
 
     @Nullable
     @Override
@@ -68,7 +67,6 @@ public class LoginSignupFragment extends Fragment {
                 CourseBookingDataBase.class, DATA_BASE_NAME).build();
 
         // Initialize all the DAO objects
-        //
         adminDAO = db.adminDao();
         courseDAO = db.courseDao();
         instructorDAO = db.instructorDao();
@@ -110,19 +108,38 @@ public class LoginSignupFragment extends Fragment {
             public void onClick(View v) {
                 if(action == ACTION_LOGIN){
 
+                    username_ = binding.editUsername.getText().toString();
+                    password_ = binding.editPassword.getText().toString();
+
+                    if(username_.isEmpty() || password_.isEmpty()) {
+                        Toast.makeText(getContext(),"Please make sure to complete the username and the password",Toast.LENGTH_LONG).show();
+                    }else {
+                        RetrieveTask retrieveTask = new RetrieveTask();
+
+                        if(role == ROLE_STUDENT){
+                            retrieveTask.execute(ROLE_STUDENT);
+                        }else if(role == ROLE_INSTRUCTOR){
+                            // Find the element in the
+                            // database
+                            retrieveTask.execute(ROLE_INSTRUCTOR);
+                        } else if(role == ROLE_ADMIN){
+                            retrieveTask.execute(ROLE_ADMIN);
+                        }
+                    }
+
                 }else{
 
-                    name = binding.editName.getText().toString();
-                    username = binding.editUsername.getText().toString();
-                    password = "";
+                    name_ = binding.editName.getText().toString();
+                    username_ = binding.editUsername.getText().toString();
+                    password_ = "";
 
-                    if(name.isEmpty() || username.isEmpty() || binding.editPassword.getText().toString().isEmpty()
+                    if(name_.isEmpty() || username_.isEmpty() || binding.editPassword.getText().toString().isEmpty()
                     || binding.editPassword.getText().toString().isEmpty()) {
                         Toast.makeText(getContext(),"Please make sure to complete all the fields",Toast.LENGTH_LONG).show();
                     }else {
 
                         if(binding.editPassword.getText().toString().equals(binding.editReenterPassword.getText().toString())) {
-                            password = binding.editPassword.getText().toString();
+                            password_ = binding.editPassword.getText().toString();
                         }else {
                             Toast.makeText(getContext(),"The two passwords field should match",Toast.LENGTH_LONG).show();
                         }
@@ -136,23 +153,13 @@ public class LoginSignupFragment extends Fragment {
                             // into the database
                             insertionTask.execute(ROLE_INSTRUCTOR);
                         }
-                        // Get the role
-
-                        // register into the database with that
-                        // role
                     }
 
-                    //if(.isEmpty())
-                    /**
-                     && !binding.editPassword.getText().toString().isEmpty()
-                     && !binding.editPassword.getText().toString().isEmpty()*/
                 }
-
-                //
             }
         });
 
-        return binding.getRoot();//super.onCreateView(inflater, container, savedInstanceState);
+        return binding.getRoot();
     }
 
     public String matchRoleWithHeader(int role) {
@@ -166,54 +173,82 @@ public class LoginSignupFragment extends Fragment {
         }
     }
 
-    private class testTask extends AsyncTask<Integer,Void,String>{
-        @Override
-        protected String doInBackground(Integer... integers) {
-            if(adminDAO.getAll().isEmpty())
-                return "Videu";
-            return "Plein";
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show();
-            super.onPostExecute(s);
-        }
-    }
-
-    private class InsertionTask extends AsyncTask<Integer,Void,Integer>{
+    private class RetrieveTask extends AsyncTask<Integer,Void,Integer>{
         @Override
         protected Integer doInBackground(Integer... role) {
+
+            // What happens if we do not find
+            // the element in the database ?
             if(role[0] == ROLE_INSTRUCTOR) {
-                instructorDAO.insertOneInstructor(new Instructor(username,password,name));
+                Instructor instructor = instructorDAO.findByUsernameAndPassword(username_, password_);
+                if(instructor!=null){
+                    name_ = instructor.name_;
+                }
                 return ROLE_INSTRUCTOR;
             }else if(role[0] == ROLE_STUDENT){
-                studentDAO.insertOneStudent(new Student(username,password,name));
-                return ROLE_STUDENT;
-            }else if(role[0] == ROLE_ADMIN){
-                if(adminDAO.getAll().isEmpty()){
-                    adminDAO.insertOneAdmin(new Admin("admin","admin123","Admin"));
+                Student student = studentDAO.findByUsernameAndPassword(username_, password_);
+                if(student!=null){
+                    name_ = student.name_;
                 }
-            }
+                return ROLE_STUDENT;
 
+            }else if(role[0] == ROLE_ADMIN){
+                Admin admin = adminDAO.findByUsernameAndPassword(username_, password_);
+                if(admin!=null){
+                    name_ = admin.Name;
+                }
+                return ROLE_ADMIN;
+            }
             return -1;
         }
 
         @Override
         protected void onPostExecute(Integer role) {
-            // Send the role
-            // and name
 
-            // Find the nave and bring the role
-            // and the name
-            NavDirections direction = LoginSignupFragmentDirections.actionLoginSignupFragmentDestinationToWelcomeFragment()
-                    .setName(name)
-                    .setRole(role);
-           // Navigation.findNavController().navigate(direction);
+            if(name_ !=null) {
+                NavDirections direction = LoginSignupFragmentDirections.actionLoginSignupFragmentDestinationToWelcomeFragment()
+                        .setName(name_)
+                        .setRole(role);
 
-            //
+                NavHostFragment.findNavController(getParentFragment()).navigate(direction);
+            }else{
+                Toast.makeText(getContext(),"Sorry the person is not registered",Toast.LENGTH_LONG).show();
+            }
+
             super.onPostExecute(role);
         }
     }
-    // Circle the field in red
+
+
+    private class InsertionTask extends AsyncTask<Integer,Void,Integer>{
+        @Override
+        protected Integer doInBackground(Integer... role) {
+            if(role[0] == ROLE_INSTRUCTOR) {
+                instructorDAO.insertOneInstructor(new Instructor(username_, password_, name_));
+                return ROLE_INSTRUCTOR;
+            }else if(role[0] == ROLE_STUDENT){
+                studentDAO.insertOneStudent(new Student(username_, password_, name_));
+                return ROLE_STUDENT;
+            }else if(role[0] == ROLE_ADMIN){
+                if(adminDAO.getAll().isEmpty()){
+                    adminDAO.insertOneAdmin(new Admin("admin","admin123","Admin"));
+                }
+                return ROLE_ADMIN;
+            }
+            return -1;
+        }
+
+        @Override
+        protected void onPostExecute(Integer role) {
+            if(role != ROLE_ADMIN && role >0){
+                NavDirections direction = LoginSignupFragmentDirections.actionLoginSignupFragmentDestinationToWelcomeFragment()
+                        .setName(name_)
+                        .setRole(role);
+                NavHostFragment.findNavController(getParentFragment()).navigate(direction);
+            }else if(role <0){
+                Toast.makeText(getContext(),"Sorry the user was not inserted ",Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(role);
+        }
+    }
 }
