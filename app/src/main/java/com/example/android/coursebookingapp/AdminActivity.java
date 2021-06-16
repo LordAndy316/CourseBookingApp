@@ -11,8 +11,6 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
     }
-
-
     // There should be a logout thing!
     //
 }

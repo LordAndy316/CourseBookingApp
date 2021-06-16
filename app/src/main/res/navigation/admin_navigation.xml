@@ -33,5 +33,29 @@
         <action
             android:id="@+id/action_adminOptionsFragment_to_courseListFragment"
             app:destination="@id/courseListFragment" />
+        <action
+            android:id="@+id/action_adminOptionsFragment_to_instructorListFragment"
+            app:destination="@id/instructorListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructorListFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.InstructorListFragment"
+        android:label="InstructorListFragment" >
+        <action
+            android:id="@+id/action_instructorListFragment_to_instructorDetailFragment"
+            app:destination="@id/instructorDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/instructorDetailFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.InstructorDetailFragment"
+        android:label="InstructorDetailFragment" >
+        <action
+            android:id="@+id/action_instructorDetailFragment_to_instructorListFragment2"
+            app:destination="@id/instructorListFragment" />
+        <argument
+            android:name="nameAndUname"
+            android:defaultValue="@null"
+            app:nullable="true"
+            app:argType="string" />
     </fragment>
 </navigation>

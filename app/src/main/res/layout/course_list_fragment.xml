@@ -33,7 +33,7 @@
             android:layout_above="@id/EmptyStateText_GV"
             android:layout_centerInParent="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_work_outline_black_24" />
+            android:src="@drawable/ic_baseline_assignment_black_24" />
 
         <!-- Group View that contains all the texts of the empty state-->
         <LinearLayout

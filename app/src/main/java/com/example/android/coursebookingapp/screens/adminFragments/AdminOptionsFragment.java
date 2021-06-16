@@ -15,7 +15,6 @@ import androidx.navigation.Navigation;
 import com.example.android.coursebookingapp.R;
 import com.example.android.coursebookingapp.database.Admin;
 import com.example.android.coursebookingapp.databinding.AdminOptionsFragmentBinding;
-import com.example.android.coursebookingapp.databinding.CourseDetailFragmentBinding;
 import com.example.android.coursebookingapp.screens.mainFragments.IntroductionFragmentDirections;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
@@ -29,7 +28,7 @@ public class AdminOptionsFragment extends Fragment {
 
         AdminOptionsFragmentBinding binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.course_detail_fragment,
+                R.layout.admin_options_fragment,
                 container,
                 false);
 
@@ -46,14 +45,16 @@ public class AdminOptionsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                NavDirections direction = AdminOptionsFragmentDirections.actionAdminOptionsFragmentToCourseListFragment();
-                Navigation.findNavController(v).navigate(direction);
+                NavDirections direction;
 
                 if(CheckedButtonId== R.id.courses_option_button){
+                    direction = AdminOptionsFragmentDirections.actionAdminOptionsFragmentToCourseListFragment();
+                    Navigation.findNavController(v).navigate(direction);
                     //
-                }/*else if(){
-                    //binding.signupButton.setEnabled(true);
-                }else if() {
+                }else if(CheckedButtonId== R.id.instructors_option_button){
+                    direction = AdminOptionsFragmentDirections.actionAdminOptionsFragmentToInstructorListFragment();
+                    Navigation.findNavController(v).navigate(direction);//binding.signupButton.setEnabled(true);
+                }/*else if() {
 
                 }*/
             }

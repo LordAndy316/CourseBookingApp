@@ -14,20 +14,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.example.android.coursebookingapp.AdminActivity;
+import com.example.android.coursebookingapp.AppUtils;
 import com.example.android.coursebookingapp.R;
 import com.example.android.coursebookingapp.databinding.IntroductionFragmentBinding;
 import com.example.android.coursebookingapp.databinding.WelcomeFragmentBinding;
 
 public class WelcomeFragment extends Fragment {
-
-
-    public int ACTION_LOGIN = 1;
-    public int ACTION_SIGNUP = 2;
-
-    public int   ROLE_ADMIN = 3;
-    public int ROLE_INSTRUCTOR = 4;
-    public int ROLE_STUDENT = 5;
-
     private int CheckedButtonId;
 
     private String name;
@@ -52,8 +44,8 @@ public class WelcomeFragment extends Fragment {
             binding.roleText.setText("You logged in as a "+getRole(role));
         }
 
-        if(role == ROLE_ADMIN) {
-            binding.action1Button.setText("Course List");
+        if(role == AppUtils.ROLE_ADMIN) {
+            binding.action1Button.setText("Admin Options");
         } else{
             binding.action1Button.setText("Get Started");
         }
@@ -62,7 +54,7 @@ public class WelcomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent;
-                if(role == ROLE_ADMIN) {
+                if(role == AppUtils.ROLE_ADMIN) {
                     intent = new Intent(getActivity(), AdminActivity.class);
                     startActivity(intent);
                 }
@@ -73,11 +65,11 @@ public class WelcomeFragment extends Fragment {
     }
 
     private String getRole(int roleCode) {
-        if(roleCode == ROLE_ADMIN)  {
+        if(roleCode == AppUtils.ROLE_ADMIN)  {
             return "Admin";
-        }else if(roleCode == ROLE_INSTRUCTOR) {
+        }else if(roleCode == AppUtils.ROLE_INSTRUCTOR) {
             return "Instructor";
-        }else if (roleCode == ROLE_STUDENT) {
+        }else if (roleCode == AppUtils.ROLE_STUDENT) {
             return "Student";
         }
         return "";

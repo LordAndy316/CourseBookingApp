@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,76 +19,69 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.room.Room;
 
 import com.example.android.coursebookingapp.AppUtils;
+import com.example.android.coursebookingapp.database.Instructor;
+import com.example.android.coursebookingapp.databinding.InstructorListFragmentBinding;
 import com.example.android.coursebookingapp.R;
-import com.example.android.coursebookingapp.database.AdminDAO;
-import com.example.android.coursebookingapp.database.Course;
+import com.example.android.coursebookingapp.database.Instructor;
 import com.example.android.coursebookingapp.database.CourseBookingDataBase;
-import com.example.android.coursebookingapp.database.CourseDAO;
 import com.example.android.coursebookingapp.database.InstructorDAO;
-import com.example.android.coursebookingapp.database.StudentDAO;
-import com.example.android.coursebookingapp.databinding.CourseListFragmentBinding;
-//import com.example.android.coursebookingapp.screens.mainFragments.LoginSignupFragmentDirections;
+import com.example.android.coursebookingapp.databinding.InstructorListFragmentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseListFragment extends Fragment {
-    // Create the daos
-    private CourseDAO courseDAO;
-    //
-    private String courseName_;
-    private String courseCode_;
 
-    private ArrayList<String> courseArrList_;
+public class InstructorListFragment extends Fragment {
+
     private CourseBookingDataBase db;
     private ArrayAdapter<String> adapter;
+
+    private InstructorDAO instructorDAO;
+    private RelativeLayout emptyGroupView_;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        CourseListFragmentBinding binding = DataBindingUtil.inflate(
+        
+        InstructorListFragmentBinding binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.course_list_fragment,
+                R.layout.instructor_list_fragment,
                 container,
                 false);
 
-        //
         db = Room.databaseBuilder(getContext(),
                 CourseBookingDataBase.class, AppUtils.DATA_BASE_NAME).build();
 
-        courseDAO = db.courseDao();
+        instructorDAO = db.instructorDao();
 
-        // Create the adapter to hold the list of courses
+        // Create the adapter to hold the list of instructors
         adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, new ArrayList<String>());
 
-        // Start a background thread to get all the courses
-        // from the database
-        CourseOperationsTask courseOperations = new CourseOperationsTask();
-        courseOperations.execute();
+        InstructorOperationsTask instructorOperationsTask = new InstructorOperationsTask();
+        instructorOperationsTask.execute();
 
-        //
+        emptyGroupView_ = binding.emptyGroupView;
+
         binding.listView.setAdapter(adapter);
 
         // In case there is no course,
         // display the empty state
-        if(adapter.getCount() > 0){
-           binding.emptyGroupView.setVisibility(View.VISIBLE);
-        }else{
+        /*if(adapter.getCount() > 0){
             binding.emptyGroupView.setVisibility(View.GONE);
-        }
+        }else{
+            binding.emptyGroupView.setVisibility(View.VISIBLE);
+        }*/
+
 
         binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String courseNameAndCode = adapter.getItem(position);
+                String InstructNameAndUname = adapter.getItem(position);
 
-
-                NavDirections direction = CourseListFragmentDirections.actionCourseListFragmentToCourseDetailFragment()
-                        .setCourseFullName(courseNameAndCode);
-
+                NavDirections direction = InstructorListFragmentDirections.actionInstructorListFragmentToInstructorDetailFragment()
+                        .setNameAndUname(InstructNameAndUname);
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
                 // Separate the text
             }
@@ -95,47 +90,47 @@ public class CourseListFragment extends Fragment {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections direction = CourseListFragmentDirections.actionCourseListFragmentToCourseDetailFragment();
-
+                NavDirections direction = InstructorListFragmentDirections.actionInstructorListFragmentToInstructorDetailFragment();
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
             }
         });
-        // Put together the adapter and the listView
-
         return binding.getRoot();
     }
 
-    private class CourseOperationsTask extends AsyncTask<Integer,Void,List<String>> {
+    // To retrieve all the elements
+    // in a background thread
+    private class InstructorOperationsTask extends AsyncTask<Integer,Void,List<String>> {
         @Override
         protected List<String> doInBackground(Integer... operation) {
 
-            List<Course> allCourse = courseDAO.getAll();
-            List<String> courseStringList = new ArrayList<String>();
+            List<Instructor> allInstructor = instructorDAO.getAll();
+            List<String> instructorStringList = new ArrayList<String>();
 
-            if(!allCourse.isEmpty()){
-                for(int i=0; i<allCourse.size();i++){
-                    courseStringList.add(allCourse.get(i).courseName + " | "+allCourse.get(i).courseCode);
+            if(!allInstructor.isEmpty()){
+                for(int i=0; i<allInstructor.size();i++){
+                    instructorStringList.add(allInstructor.get(i).name_ + " | "+allInstructor.get(i).userName);
                 }
-                return courseStringList;
+                return instructorStringList;
             };
             return null;
+
         }
 
         @Override
-        protected void onPostExecute(List<String> courseList) {
+        protected void onPostExecute(List<String> instructorList) {
 
-            if(courseList != null) {
-                courseArrList_ = (ArrayList<String>) courseList;
-                adapter.addAll(courseList);
+            if(instructorList != null) {
+                //instructorArrList_ = (ArrayList<String>) instructorList;
+                adapter.addAll(instructorList);
                 synchronized(adapter){
                     adapter.notifyAll();
                 }
-
-                //courseArrList_ = (ArrayList<String>) courseList;
+                emptyGroupView_.setVisibility(View.GONE);
+            }else{
+                emptyGroupView_.setVisibility(View.VISIBLE);
             }
             // Add it to the listView here
-            //
-            super.onPostExecute(courseList);
+            super.onPostExecute(instructorList);
         }
     }
 }

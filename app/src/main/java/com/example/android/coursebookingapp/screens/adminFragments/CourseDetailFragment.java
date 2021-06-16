@@ -15,6 +15,7 @@ import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.room.Room;
 
+import com.example.android.coursebookingapp.AppUtils;
 import com.example.android.coursebookingapp.R;
 import com.example.android.coursebookingapp.database.Course;
 import com.example.android.coursebookingapp.database.CourseBookingDataBase;
@@ -30,11 +31,6 @@ public class CourseDetailFragment extends Fragment {
     private CourseDAO courseDAO;
     private CourseBookingDataBase db;
 
-    public String DATA_BASE_NAME = "course_booking_database";
-
-    public Integer ACTION_SAVE = 9;
-    public Integer ACTION_DELETE = 10;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,7 +44,7 @@ public class CourseDetailFragment extends Fragment {
         courseFullName_ = CourseDetailFragmentArgs.fromBundle(getArguments()).getCourseFullName();
 
         db = Room.databaseBuilder(getContext(),
-                CourseBookingDataBase.class, DATA_BASE_NAME).build();
+                CourseBookingDataBase.class, AppUtils.DATA_BASE_NAME).build();
 
         courseDAO = db.courseDao();
 
@@ -71,7 +67,7 @@ public class CourseDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 saveOrDelete(binding.editCourseName.getText().toString(),
-                        binding.editCourseCode.getText().toString(),ACTION_SAVE);
+                        binding.editCourseCode.getText().toString(),AppUtils.ACTION_SAVE);
             }
         });
 
@@ -79,7 +75,7 @@ public class CourseDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 saveOrDelete(binding.editCourseName.getText().toString(),
-                        binding.editCourseCode.getText().toString(),ACTION_DELETE);
+                        binding.editCourseCode.getText().toString(),AppUtils.ACTION_DELETE);
             }
         });
 
@@ -103,10 +99,10 @@ public class CourseDetailFragment extends Fragment {
         @Override
         protected Boolean doInBackground(Integer... action) {
 
-            if(action[0] == ACTION_SAVE) {
+            if(action[0] == AppUtils.ACTION_SAVE) {
                 courseDAO.insertOneCourse(new Course(courseName_, courseCode_));
                 return true;
-            }else if (action[0] == ACTION_DELETE){
+            }else if (action[0] == AppUtils.ACTION_DELETE){
                 int nbDel = courseDAO.delete(courseName_, courseCode_);
 
                 if( nbDel> 0){

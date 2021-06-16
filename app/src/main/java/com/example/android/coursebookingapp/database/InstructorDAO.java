@@ -16,6 +16,8 @@ public interface InstructorDAO {
     @Query("SELECT * FROM instructors")
     List<Instructor> getAll();
 
+    @Query("SELECT COUNT(*) FROM instructors")
+    int count();
     /*
     @Query("SELECT * FROM instructors WHERE id IN (:instructorIds)")
     List<Instructor> loadAllByIds(int[] instructorIds);*/
@@ -35,6 +37,11 @@ public interface InstructorDAO {
     @Insert(entity = Instructor.class)
     void insertOneInstructor(Instructor instructor);
 
+    /*
     @Delete
-    void delete(Instructor instructor);
+    void delete(Instructor instructor);*/
+
+    @Query("DELETE FROM instructors WHERE name = :iName AND "+
+            " username = :uName")
+    int delete(String iName,String uName);
 }
