@@ -25,8 +25,6 @@ import com.example.android.coursebookingapp.database.InstructorDAO;
 import com.example.android.coursebookingapp.database.Student;
 import com.example.android.coursebookingapp.database.StudentDAO;
 import com.example.android.coursebookingapp.databinding.LoginSignupFragmentBinding;
-import com.example.android.coursebookingapp.screens.LoginSignupFragmentArgs;
-import com.example.android.coursebookingapp.screens.LoginSignupFragmentDirections;
 
 public class LoginSignupFragment extends Fragment {
 
@@ -62,7 +60,6 @@ public class LoginSignupFragment extends Fragment {
 
 
         // Make an instance of the database
-        // This can be done in the main thread
         db = Room.databaseBuilder(getContext(),
                 CourseBookingDataBase.class, DATA_BASE_NAME).build();
 
@@ -231,7 +228,7 @@ public class LoginSignupFragment extends Fragment {
                 return ROLE_STUDENT;
             }else if(role[0] == ROLE_ADMIN){
                 if(adminDAO.getAll().isEmpty()){
-                    adminDAO.insertOneAdmin(new Admin("admin","admin123","Admin"));
+                    adminDAO.insertOneAdmin(new Admin("admin","admin123","Olivia Borel"));
                 }
                 return ROLE_ADMIN;
             }

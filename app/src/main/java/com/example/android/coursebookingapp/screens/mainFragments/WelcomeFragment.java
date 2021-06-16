@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +17,6 @@ import com.example.android.coursebookingapp.AdminActivity;
 import com.example.android.coursebookingapp.R;
 import com.example.android.coursebookingapp.databinding.IntroductionFragmentBinding;
 import com.example.android.coursebookingapp.databinding.WelcomeFragmentBinding;
-import com.example.android.coursebookingapp.screens.WelcomeFragmentArgs;
 
 public class WelcomeFragment extends Fragment {
 
@@ -63,7 +63,7 @@ public class WelcomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent;
                 if(role == ROLE_ADMIN) {
-                    intent = new Intent(getContext(), AdminActivity.class);
+                    intent = new Intent(getActivity(), AdminActivity.class);
                     startActivity(intent);
                 }
             }

@@ -37,7 +37,7 @@
             tools:text="Admin" />
 
         <Button
-            android:id="@+id/teacher_button"
+            android:id="@+id/instructors_button"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="130dp"
             android:layout_height="88dp"
