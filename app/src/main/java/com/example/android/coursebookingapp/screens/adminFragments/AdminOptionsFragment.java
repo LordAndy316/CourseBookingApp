@@ -44,23 +44,21 @@ public class AdminOptionsFragment extends Fragment {
         binding.exploreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 NavDirections direction;
 
                 if(CheckedButtonId== R.id.courses_option_button){
                     direction = AdminOptionsFragmentDirections.actionAdminOptionsFragmentToCourseListFragment();
                     Navigation.findNavController(v).navigate(direction);
-                    //
                 }else if(CheckedButtonId== R.id.instructors_option_button){
                     direction = AdminOptionsFragmentDirections.actionAdminOptionsFragmentToInstructorListFragment();
-                    Navigation.findNavController(v).navigate(direction);//binding.signupButton.setEnabled(true);
-                }/*else if() {
-
-                }*/
+                    Navigation.findNavController(v).navigate(direction);
+                }else if(CheckedButtonId== R.id.student_option_button) {
+                    direction = AdminOptionsFragmentDirections.actionAdminOptionsFragmentToStudentListFragment();
+                    Navigation.findNavController(v).navigate(direction);
+                }
             }
         });
 
-        //
         return binding.getRoot();
         }
     }

@@ -81,6 +81,7 @@ public class InstructorDetailFragment extends Fragment {
             }
         });
 
+        getActivity().setTitle("Instructor Detail");
         return binding.getRoot();
     }
 

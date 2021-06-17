@@ -65,15 +65,6 @@ public class InstructorListFragment extends Fragment {
 
         binding.listView.setAdapter(adapter);
 
-        // In case there is no course,
-        // display the empty state
-        /*if(adapter.getCount() > 0){
-            binding.emptyGroupView.setVisibility(View.GONE);
-        }else{
-            binding.emptyGroupView.setVisibility(View.VISIBLE);
-        }*/
-
-
         binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -87,13 +78,7 @@ public class InstructorListFragment extends Fragment {
             }
         });
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavDirections direction = InstructorListFragmentDirections.actionInstructorListFragmentToInstructorDetailFragment();
-                NavHostFragment.findNavController(getParentFragment()).navigate(direction);
-            }
-        });
+        getActivity().setTitle("Instructor list");
         return binding.getRoot();
     }
 

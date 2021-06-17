@@ -10,8 +10,7 @@
         <action
             android:id="@+id/action_introductionFragment_to_loginSignupFragment"
             app:destination="@id/loginSignupFragment_destination"
-            app:popUpTo="@id/introductionFragment"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/introductionFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginSignupFragment_destination"
@@ -29,8 +28,7 @@
         <action
             android:id="@+id/action_loginSignupFragment_destination_to_welcomeFragment"
             app:destination="@id/welcomeFragment"
-            app:popUpTo="@id/loginSignupFragment_destination"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/loginSignupFragment_destination" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"

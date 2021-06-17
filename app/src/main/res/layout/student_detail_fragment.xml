@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
@@ -12,38 +14,38 @@
         android:paddingLeft="@dimen/fields_container_padding"
         android:paddingRight="@dimen/fields_container_padding"
         android:paddingBottom="@dimen/form_top_margin"
-        tools:context="com.example.android.coursebookingapp.screens.adminFragments.InstructorDetailFragment">
+        tools:context="com.example.android.coursebookingapp.screens.adminFragments.StudentDetailFragment">
 
-        <!-- Instructor Name category -->
+        <!-- student Name category -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/instructorNameOutlinedTextField"
+            android:id="@+id/studentNameOutlinedTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/details_fragment_spacing"
-            android:hint="Instructor Name">
+            android:hint="Student Name">
 
-            <!-- Instructor Name field-->
+            <!-- student Name field-->
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_inst_name"
+                android:id="@+id/edit_stu_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Instructor Username category -->
+        <!-- student Username category -->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/instructorUsernameOutlinedTextField"
+            android:id="@+id/studentUsernameOutlinedTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Instructor Username">
+            android:hint="Student Username">
 
-            <!-- Instructor Username Field -->
+            <!-- student Username Field -->
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_inst_username"
+                android:id="@+id/edit_stu_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
@@ -63,7 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delete"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                />
 
         </LinearLayout>
 

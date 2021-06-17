@@ -79,6 +79,7 @@ public class CourseDetailFragment extends Fragment {
             }
         });
 
+        getActivity().setTitle("Course detail");
         return binding.getRoot();
     }
 
