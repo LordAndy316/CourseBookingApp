@@ -53,4 +53,3 @@ public class AdminActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
