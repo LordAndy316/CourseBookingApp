@@ -1,4 +1,4 @@
-package com.example.android.coursebookingapp.screens.mainFragments;
+package com.example.android.coursebookingapp.screens;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
