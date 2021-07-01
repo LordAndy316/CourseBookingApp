@@ -3,6 +3,7 @@ package com.example.android.coursebookingapp.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import java.util.List;
@@ -23,10 +24,10 @@ public interface StudentDAO {
                 "password LIKE :pWord LIMIT 1")
         Student findByUsernameAndPassword(String uName, String pWord);
 
-        @Insert
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
         void insertAll(Student... students);
 
-        @Insert(entity = Student.class)
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
         void insertOneStudent(Student student);
 
         /*@Delete

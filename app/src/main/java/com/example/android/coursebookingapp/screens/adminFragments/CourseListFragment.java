@@ -101,7 +101,6 @@ public class CourseListFragment extends Fragment {
             }
         });
         // Put together the adapter and the listView
-
         getActivity().setTitle("Course list");
         return binding.getRoot();
     }

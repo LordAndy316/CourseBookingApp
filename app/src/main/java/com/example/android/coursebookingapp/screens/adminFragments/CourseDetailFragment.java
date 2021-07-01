@@ -28,6 +28,8 @@ public class CourseDetailFragment extends Fragment {
     private String courseCode_;
     private String courseName_;
 
+    private Course currentCourse_;
+
     private CourseDAO courseDAO;
     private CourseBookingDataBase db;
 
@@ -48,6 +50,9 @@ public class CourseDetailFragment extends Fragment {
 
         courseDAO = db.courseDao();
 
+
+        currentCourse_ = new Course();
+
         if(courseFullName_ !=null){
             int nameSeparatorIndex = -1;
             nameSeparatorIndex = courseFullName_.indexOf("|");
@@ -61,6 +66,12 @@ public class CourseDetailFragment extends Fragment {
             // the corresponding edit text
             binding.editCourseName.setText(courseName_);
             binding.editCourseCode.setText(courseCode_);
+
+            // Get the class from the database
+            // and put it inside the "currentClass_" variable
+            GetCourseTask  getCourseTask = new GetCourseTask();
+            getCourseTask.execute();
+
         }
 
         binding.saveButton.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +101,7 @@ public class CourseDetailFragment extends Fragment {
         if(cCode.isEmpty() || cName.isEmpty()) {
             Toast.makeText(getContext(),"Make sure no field is empty",Toast.LENGTH_LONG).show();
         }else {
+
             courseName_ = cName.trim();
             courseCode_ = cCode.trim();
 
@@ -100,8 +112,11 @@ public class CourseDetailFragment extends Fragment {
         @Override
         protected Boolean doInBackground(Integer... action) {
 
+            currentCourse_.courseName = courseName_;
+            currentCourse_.courseCode = courseCode_;
+
             if(action[0] == AppUtils.ACTION_SAVE) {
-                courseDAO.insertOneCourse(new Course(courseName_, courseCode_));
+                courseDAO.insertOneCourse(currentCourse_);
                 return true;
             }else if (action[0] == AppUtils.ACTION_DELETE){
                 int nbDel = courseDAO.delete(courseName_, courseCode_);
@@ -126,6 +141,22 @@ public class CourseDetailFragment extends Fragment {
                 Toast.makeText(getContext(),"Operation failed",Toast.LENGTH_LONG).show();
             }
             super.onPostExecute(status);
+        }
+    }
+
+    // Get a course from the database
+    // currentCourse
+
+    private class GetCourseTask extends AsyncTask<Void,Void,Course> {
+        @Override
+        protected Course doInBackground(Void... none) {
+            return courseDAO.findByNameAndCode(courseName_,courseCode_);
+        }
+
+        @Override
+        protected void onPostExecute(Course theCourse) {
+            currentCourse_ = theCourse;
+            super.onPostExecute(theCourse);
         }
     }
 }

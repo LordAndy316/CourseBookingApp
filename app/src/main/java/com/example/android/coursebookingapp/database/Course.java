@@ -26,6 +26,14 @@ public class Course {
         this.courseCode = courseCode;
         this.courseName = courseName;
     }
+    public Course(){}
+    // The entire course
+    // save it
+    /*public Course(Course course){
+        this.courseName = course.courseName;
+        this.courseCode = course.courseCode;
+        this.id = course.id;
+    }*/
     /*
     For later deliv
 
