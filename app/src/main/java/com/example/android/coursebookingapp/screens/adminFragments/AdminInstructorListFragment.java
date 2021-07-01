@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,12 +19,10 @@ import androidx.room.Room;
 
 import com.example.android.coursebookingapp.AppUtils;
 import com.example.android.coursebookingapp.database.Instructor;
-import com.example.android.coursebookingapp.databinding.InstructorListFragmentBinding;
 import com.example.android.coursebookingapp.R;
-import com.example.android.coursebookingapp.database.Instructor;
 import com.example.android.coursebookingapp.database.CourseBookingDataBase;
 import com.example.android.coursebookingapp.database.InstructorDAO;
-import com.example.android.coursebookingapp.databinding.InstructorListFragmentBinding;
+import com.example.android.coursebookingapp.databinding.AdminInstructorListFragmentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +39,10 @@ public class AdminInstructorListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        
-        InstructorListFragmentBinding binding = DataBindingUtil.inflate(
+
+        AdminInstructorListFragmentBinding binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.instructor_list_fragment,
+                R.layout.admin_instructor_list_fragment,
                 container,
                 false);
 
@@ -71,7 +68,7 @@ public class AdminInstructorListFragment extends Fragment {
 
                 String InstructNameAndUname = adapter.getItem(position);
 
-                NavDirections direction = InstructorListFragmentDirections.actionInstructorListFragmentToInstructorDetailFragment()
+                NavDirections direction = AdminInstructorListFragmentDirections.actionInstructorListFragmentToInstructorDetailFragment()
                         .setNameAndUname(InstructNameAndUname);
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
                 // Separate the text

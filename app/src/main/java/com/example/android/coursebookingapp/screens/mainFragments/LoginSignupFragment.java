@@ -116,6 +116,25 @@ public class LoginSignupFragment extends Fragment {
                         }
                     }
 
+                    username_ = binding.editUsername.getText().toString();
+                    password_ = binding.editPassword.getText().toString();
+
+                    if(username_.isEmpty() || password_.isEmpty()) {
+                        Toast.makeText(getContext(),"Please make sure to complete the username and the password",Toast.LENGTH_LONG).show();
+                    }else {
+                        RetrieveTask retrieveTask = new RetrieveTask();
+
+                        if(role == ROLE_STUDENT){
+                            retrieveTask.execute(ROLE_STUDENT);
+                        }else if(role == ROLE_INSTRUCTOR){
+                            // Find the element in the
+                            // database
+                            retrieveTask.execute(ROLE_INSTRUCTOR);
+                        } else if(role == ROLE_ADMIN){
+                            retrieveTask.execute(ROLE_ADMIN);
+                        }
+                    }
+
                 }else{
 
                     name_ = binding.editName.getText().toString();
