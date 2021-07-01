@@ -4,6 +4,7 @@ package com.example.android.coursebookingapp.database;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 import com.example.android.coursebookingapp.database.Instructor;
@@ -31,7 +32,7 @@ public interface InstructorDAO {
             "password LIKE :pWord LIMIT 1")
     Instructor findByUsernameAndPassword(String uName, String pWord);
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Instructor... instructors);
 
     @Insert(entity = Instructor.class)

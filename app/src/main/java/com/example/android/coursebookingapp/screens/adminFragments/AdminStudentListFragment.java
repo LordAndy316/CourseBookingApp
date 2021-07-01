@@ -30,7 +30,7 @@ import com.example.android.coursebookingapp.databinding.StudentListFragmentBindi
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentListFragment extends Fragment {
+public class AdminStudentListFragment extends Fragment {
 
     private CourseBookingDataBase db;
     private ArrayAdapter<String> adapter;

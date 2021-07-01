@@ -20,7 +20,9 @@ public interface CourseDAO {
 
     /*
     @Query("SELECT * FROM course WHERE id IN (:courseIds)")
-    List<Course> loadAllByIds(int[] courseIds);*/
+    List<Course> loadAllByIds(int[] courseIds);
+    before updating, we find it
+    */
 
     @Query("SELECT * FROM course WHERE code LIKE :courseCode LIMIT 1")
     Course findByCode(String courseCode);
@@ -28,13 +30,16 @@ public interface CourseDAO {
     @Query("SELECT * FROM course WHERE name LIKE :courseName LIMIT 1")
     Course findByName(String courseName);
 
+    @Query("SELECT * FROM course WHERE name LIKE :courseName AND code LIKE :courseCode LIMIT 1")
+    Course findByNameAndCode(String courseName,String courseCode);
+
     //
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Course... courses);
 
-    // Returns the id of the element
+    // Returns the id of the element(entity = Course.class)
     // we have just inserted.
-    @Insert(entity = Course.class)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insertOneCourse(Course course);
 
     @Query("DELETE FROM course WHERE name = :courseName AND "+

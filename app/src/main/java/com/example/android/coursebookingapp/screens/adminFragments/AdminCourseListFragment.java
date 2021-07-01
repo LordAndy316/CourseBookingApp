@@ -30,7 +30,7 @@ import com.example.android.coursebookingapp.databinding.CourseListFragmentBindin
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseListFragment extends Fragment {
+public class AdminCourseListFragment extends Fragment {
     // Create the daos
     private CourseDAO courseDAO;
     //
@@ -101,7 +101,6 @@ public class CourseListFragment extends Fragment {
             }
         });
         // Put together the adapter and the listView
-
         getActivity().setTitle("Course list");
         return binding.getRoot();
     }
