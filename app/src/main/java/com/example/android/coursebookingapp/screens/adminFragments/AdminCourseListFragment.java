@@ -18,14 +18,10 @@ import androidx.room.Room;
 
 import com.example.android.coursebookingapp.AppUtils;
 import com.example.android.coursebookingapp.R;
-import com.example.android.coursebookingapp.database.AdminDAO;
 import com.example.android.coursebookingapp.database.Course;
 import com.example.android.coursebookingapp.database.CourseBookingDataBase;
 import com.example.android.coursebookingapp.database.CourseDAO;
-import com.example.android.coursebookingapp.database.InstructorDAO;
-import com.example.android.coursebookingapp.database.StudentDAO;
-import com.example.android.coursebookingapp.databinding.CourseListFragmentBinding;
-//import com.example.android.coursebookingapp.screens.mainFragments.LoginSignupFragmentDirections;
+import com.example.android.coursebookingapp.databinding.AdminCourseListFragmentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +41,9 @@ public class AdminCourseListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        CourseListFragmentBinding binding = DataBindingUtil.inflate(
+        AdminCourseListFragmentBinding binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.course_list_fragment,
+                R.layout.admin_course_list_fragment,
                 container,
                 false);
 
@@ -84,7 +80,7 @@ public class AdminCourseListFragment extends Fragment {
                 String courseNameAndCode = adapter.getItem(position);
 
 
-                NavDirections direction = CourseListFragmentDirections.actionCourseListFragmentToCourseDetailFragment()
+                NavDirections direction = AdminCourseListFragmentDirections.actionCourseListFragmentToCourseDetailFragment()
                         .setCourseFullName(courseNameAndCode);
 
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
@@ -95,7 +91,7 @@ public class AdminCourseListFragment extends Fragment {
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavDirections direction = CourseListFragmentDirections.actionCourseListFragmentToCourseDetailFragment();
+                NavDirections direction = AdminCourseListFragmentDirections.actionCourseListFragmentToCourseDetailFragment();
 
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
             }
