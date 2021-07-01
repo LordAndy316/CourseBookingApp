@@ -29,6 +29,10 @@ public interface StudentDAO {
         @Insert(entity = Student.class)
         void insertOneStudent(Student student);
 
-        @Delete
-        void delete(Student student);
+        /*@Delete
+        void delete(Student student);*/
+
+        @Query("DELETE FROM students WHERE name = :iName AND "+
+                " username = :uName")
+        int delete(String iName,String uName);
 }

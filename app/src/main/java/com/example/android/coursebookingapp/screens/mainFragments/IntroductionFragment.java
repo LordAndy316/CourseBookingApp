@@ -1,4 +1,4 @@
-package com.example.android.coursebookingapp.screens;
+package com.example.android.coursebookingapp.screens.mainFragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,19 +13,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import com.example.android.coursebookingapp.AppUtils;
 import com.example.android.coursebookingapp.R;
 import com.example.android.coursebookingapp.databinding.IntroductionFragmentBinding;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
 
 public class IntroductionFragment extends Fragment {
-
-    public int ACTION_LOGIN = 1;
-    public int ACTION_SIGNUP = 2;
-
-    public static int  ROLE_ADMIN = 3;
-    public int ROLE_INSTRUCTOR = 4;
-    public int ROLE_STUDENT = 5;
 
     private int CheckedButtonId;
 
@@ -56,14 +50,17 @@ public class IntroductionFragment extends Fragment {
         binding.signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(CheckedButtonId == R.id.student_button) {
-                    openLoginSignupFragment(ACTION_SIGNUP,ROLE_STUDENT,v);
-                }else if(CheckedButtonId == R.id.teacher_button) {
-                    openLoginSignupFragment(ACTION_SIGNUP,ROLE_INSTRUCTOR,v);
-                }else{
-                    Toast.makeText(getContext(),"You need to select a role",Toast.LENGTH_LONG);
+                    if(CheckedButtonId == R.id.student_button) {
+                        openLoginSignupFragment(AppUtils.ACTION_SIGNUP, AppUtils.ROLE_STUDENT,v);
+                    }else if(CheckedButtonId == R.id.instructors_button) {
+                        openLoginSignupFragment(AppUtils.ACTION_SIGNUP,AppUtils.ROLE_INSTRUCTOR,v);
+                    }else{
+                        Toast.makeText(getContext(),"You need to select a role",Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
+                /*else{
+                }*/
+
         });
 
         //
@@ -71,11 +68,11 @@ public class IntroductionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(CheckedButtonId == R.id.student_button) {
-                    openLoginSignupFragment(ACTION_LOGIN,ROLE_STUDENT,v);
-                }else if(CheckedButtonId == R.id.teacher_button) {
-                    openLoginSignupFragment(ACTION_LOGIN,ROLE_INSTRUCTOR,v);
+                    openLoginSignupFragment(AppUtils.ACTION_LOGIN,AppUtils.ROLE_STUDENT,v);
+                }else if(CheckedButtonId == R.id.instructors_button) {
+                    openLoginSignupFragment(AppUtils.ACTION_LOGIN,AppUtils.ROLE_INSTRUCTOR,v);
                 } else if(CheckedButtonId == R.id.admin_button){
-                    openLoginSignupFragment(ACTION_LOGIN,ROLE_ADMIN,v);
+                    openLoginSignupFragment(AppUtils.ACTION_LOGIN,AppUtils.ROLE_ADMIN,v);
                 }else{
                     Toast.makeText(getContext(),"You need to select a role",Toast.LENGTH_LONG);
                 }
