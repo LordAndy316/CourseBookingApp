@@ -17,10 +17,9 @@ import androidx.room.Room;
 
 import com.example.android.coursebookingapp.AppUtils;
 import com.example.android.coursebookingapp.R;
-import com.example.android.coursebookingapp.database.Course;
 import com.example.android.coursebookingapp.database.CourseBookingDataBase;
 import com.example.android.coursebookingapp.database.InstructorDAO;
-import com.example.android.coursebookingapp.databinding.InstructorDetailFragmentBinding;
+import com.example.android.coursebookingapp.databinding.AdminInstructorDetailFragmentBinding;
 
 public class AdminInstructorDetailFragment extends Fragment {
     
@@ -37,13 +36,13 @@ public class AdminInstructorDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        InstructorDetailFragmentBinding binding = DataBindingUtil.inflate(
+        AdminInstructorDetailFragmentBinding binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.instructor_detail_fragment,
+                R.layout.admin_instructor_detail_fragment,
                 container,
                 false);
 
-        instructorNameAndUsername_ = InstructorDetailFragmentArgs.fromBundle(getArguments()).getNameAndUname();
+        instructorNameAndUsername_ = AdminInstructorDetailFragmentArgs.fromBundle(getArguments()).getNameAndUname();
 
         db = Room.databaseBuilder(getContext(),
                 CourseBookingDataBase.class, AppUtils.DATA_BASE_NAME).build();
@@ -101,7 +100,7 @@ public class AdminInstructorDetailFragment extends Fragment {
         protected void onPostExecute(Boolean status) {
             if(status){
                 Toast.makeText(getContext(),"Instructor Deleted",Toast.LENGTH_LONG).show();
-                NavDirections direction = InstructorDetailFragmentDirections.actionInstructorDetailFragmentToInstructorListFragment2();
+                NavDirections direction = AdminInstructorDetailFragmentDirections.actionInstructorDetailFragmentToInstructorListFragment2();
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
             }else{
                 Toast.makeText(getContext(),"Operation failed",Toast.LENGTH_LONG).show();

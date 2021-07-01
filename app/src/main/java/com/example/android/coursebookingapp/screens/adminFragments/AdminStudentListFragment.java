@@ -70,7 +70,7 @@ public class AdminStudentListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String studentNameAndUname = adapter.getItem(position);
-                NavDirections direction = StudentListFragmentDirections.actionStudentListFragmentToStudentDetailFragment()
+                NavDirections direction = AdminStudentListFragmentDirections.actionStudentListFragmentToStudentDetailFragment()
                         .setNameAndUname(studentNameAndUname);
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
             }

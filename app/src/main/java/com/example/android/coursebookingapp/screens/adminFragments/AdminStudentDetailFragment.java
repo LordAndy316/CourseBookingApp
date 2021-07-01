@@ -42,7 +42,7 @@ public class AdminStudentDetailFragment extends Fragment {
                 container,
                 false);
 
-        studentNameAndUsername_= StudentDetailFragmentArgs.fromBundle(getArguments()).getNameAndUname();
+        studentNameAndUsername_= AdminStudentDetailFragmentArgs.fromBundle(getArguments()).getNameAndUname();
         
         db = Room.databaseBuilder(getContext(),
                 CourseBookingDataBase.class, AppUtils.DATA_BASE_NAME).build();
@@ -100,7 +100,7 @@ public class AdminStudentDetailFragment extends Fragment {
         protected void onPostExecute(Boolean status) {
             if(status){
                 Toast.makeText(getContext(),"student Deleted",Toast.LENGTH_LONG).show();
-                NavDirections direction = StudentDetailFragmentDirections.actionStudentDetailFragmentToStudentListFragment();
+                NavDirections direction = AdminStudentDetailFragmentDirections.actionStudentDetailFragmentToStudentListFragment();
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
             }else{
                 Toast.makeText(getContext(),"Operation failed",Toast.LENGTH_LONG).show();

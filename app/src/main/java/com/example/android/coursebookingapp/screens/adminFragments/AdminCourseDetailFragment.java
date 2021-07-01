@@ -20,7 +20,8 @@ import com.example.android.coursebookingapp.R;
 import com.example.android.coursebookingapp.database.Course;
 import com.example.android.coursebookingapp.database.CourseBookingDataBase;
 import com.example.android.coursebookingapp.database.CourseDAO;
-import com.example.android.coursebookingapp.databinding.CourseDetailFragmentBinding;
+import com.example.android.coursebookingapp.databinding.AdminCourseDetailFragmentBinding;
+import com.example.android.coursebookingapp.databinding.AdminCourseListFragmentBinding;
 
 public class AdminCourseDetailFragment extends Fragment {
 
@@ -37,13 +38,14 @@ public class AdminCourseDetailFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        CourseDetailFragmentBinding binding = DataBindingUtil.inflate(
+
+        AdminCourseDetailFragmentBinding binding = DataBindingUtil.inflate(
                 inflater,
-                R.layout.course_detail_fragment,
+                R.layout.admin_course_detail_fragment,
                 container,
                 false);
 
-        courseFullName_ = CourseDetailFragmentArgs.fromBundle(getArguments()).getCourseFullName();
+        courseFullName_ = AdminCourseDetailFragmentArgs.fromBundle(getArguments()).getCourseFullName();
 
         db = Room.databaseBuilder(getContext(),
                 CourseBookingDataBase.class, AppUtils.DATA_BASE_NAME).build();
@@ -134,7 +136,7 @@ public class AdminCourseDetailFragment extends Fragment {
         protected void onPostExecute(Boolean status) {
             if(status){
                 Toast.makeText(getContext(),"The Operation Succeed",Toast.LENGTH_LONG).show();
-                NavDirections direction = CourseDetailFragmentDirections.actionCourseDetailFragmentToCourseListFragment();
+                NavDirections direction = AdminCourseDetailFragmentDirections.actionCourseDetailFragmentToCourseListFragment();
 
                 NavHostFragment.findNavController(getParentFragment()).navigate(direction);
             }else{
