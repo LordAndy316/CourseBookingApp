@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InstructorListFragment extends Fragment {
+public class AdminInstructorListFragment extends Fragment {
 
     private CourseBookingDataBase db;
     private ArrayAdapter<String> adapter;

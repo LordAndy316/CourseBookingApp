@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/courseListFragment"
-        android:name="com.example.android.coursebookingapp.screens.adminFragments.CourseListFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.AdminCourseListFragment"
         android:label="CourseListFragment" >
         <action
             android:id="@+id/action_courseListFragment_to_courseDetailFragment"
@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/courseDetailFragment"
-        android:name="com.example.android.coursebookingapp.screens.adminFragments.CourseDetailFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.AdminCourseDetailFragment"
         android:label="CourseDetailFragment" >
 
         <argument
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/instructorListFragment"
-        android:name="com.example.android.coursebookingapp.screens.adminFragments.InstructorListFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.AdminInstructorListFragment"
         android:label="InstructorListFragment" >
         <action
             android:id="@+id/action_instructorListFragment_to_instructorDetailFragment"
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/instructorDetailFragment"
-        android:name="com.example.android.coursebookingapp.screens.adminFragments.InstructorDetailFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.AdminInstructorDetailFragment"
         android:label="InstructorDetailFragment" >
         <action
             android:id="@+id/action_instructorDetailFragment_to_instructorListFragment2"
@@ -66,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/studentListFragment"
-        android:name="com.example.android.coursebookingapp.screens.adminFragments.StudentListFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.AdminStudentListFragment"
         android:label="StudentListFragment" >
         <action
             android:id="@+id/action_studentListFragment_to_studentDetailFragment"
@@ -74,7 +74,7 @@
     </fragment>
     <fragment
         android:id="@+id/studentDetailFragment"
-        android:name="com.example.android.coursebookingapp.screens.adminFragments.StudentDetailFragment"
+        android:name="com.example.android.coursebookingapp.screens.adminFragments.AdminStudentDetailFragment"
         android:label="StudentDetailFragment" >
 
         <argument

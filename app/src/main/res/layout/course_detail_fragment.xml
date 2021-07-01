@@ -13,7 +13,7 @@
         android:paddingLeft="@dimen/fields_container_padding"
         android:paddingRight="@dimen/fields_container_padding"
         android:paddingBottom="@dimen/form_top_margin"
-        tools:context="com.example.android.coursebookingapp.screens.adminFragments.CourseDetailFragment">
+        tools:context="com.example.android.coursebookingapp.screens.adminFragments.AdminCourseDetailFragment">
 
         <!-- Course Name category -->
         <com.google.android.material.textfield.TextInputLayout

@@ -22,7 +22,7 @@ import com.example.android.coursebookingapp.database.CourseBookingDataBase;
 import com.example.android.coursebookingapp.database.CourseDAO;
 import com.example.android.coursebookingapp.databinding.CourseDetailFragmentBinding;
 
-public class CourseDetailFragment extends Fragment {
+public class AdminCourseDetailFragment extends Fragment {
 
     private String courseFullName_;
     private String courseCode_;
